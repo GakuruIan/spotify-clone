@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:ital@0;1&family=Saira+Condensed:wght@100;200;300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1,h2,h3{
+    font-family: 'Philosopher', sans-serif;
+}
+
+body{
+  font-family: 'Saira Condensed', sans-serif;
+  color: #fff;
+}
