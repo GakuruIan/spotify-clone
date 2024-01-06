@@ -2,6 +2,7 @@ import { createBrowserRouter,RouterProvider,} from "react-router-dom";
 import Content from "./Components/Content/Content";
 import Landing from "./Pages/Landing/Landing";
 import Main from "./Pages/Main/Main";
+import SpotifyUI from "./Pages/SpotifyUI/SpotifyUI";
 
 
 function App() {
@@ -18,6 +19,10 @@ function App() {
         {
           path:"/main",
           element:<Content/>
+        },
+        {
+          path:'/main/ui',
+          element:<SpotifyUI/>
         }
       ]
     }

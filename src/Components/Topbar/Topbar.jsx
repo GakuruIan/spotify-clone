@@ -10,18 +10,25 @@ import { CiUser } from "react-icons/ci";
 import { IoSettingsOutline } from "react-icons/io5";
 import { PiFoldersLight } from "react-icons/pi";
 import { IoIosLogOut } from "react-icons/io";
+import { CiMenuFries } from "react-icons/ci"
 
 const Topbar = () => {
     const[isopen,setIsOpen] =  useState(false)
 
 
   return (
-    <div className='flex-1 mt-2 w-full'>
+    <div className='flex-1 w-full'>
         <div className="py-2 px-2 md:px-4 w-full flex items-center justify-between">
+            {/* menu */}
+             <span className='hover:cursor-pointer block md:hidden'>
+                <CiMenuFries className='text-xl'/>
+             </span>
+             {/* search bar */}
             <form action="" className="flex gap-x-2 bg-light md:w-1/2 pl-2 pr-4 rounded-sm">
                 <input type="text" className="w-full bg-transparent px-2 py-2 outline-none placeholder:text-gray-400" placeholder='search by song or artist'/>
                 <button className='px-2'><CiSearch/></button>
             </form>
+            
             <div className="relative flex gap-x-2 flex-col items-center">
 
                 <button onClick={()=>setIsOpen(!isopen)} id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" className="text-white    font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">

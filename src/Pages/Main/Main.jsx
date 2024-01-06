@@ -6,7 +6,7 @@ const Main = () => {
    
   return (
     <div className='min-h-screen bg-dark-200 w-full'>
-       <div className="flex relative gap-x-2">
+       <div className="flex relative">
           <Sidebar/>
 
           <div className="flex-1 w-full relative">

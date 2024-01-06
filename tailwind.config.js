@@ -21,7 +21,11 @@ export default {
         spotify:{
           900:'#1DB954'
         },
-        light:"rgba(225,255,255,0.2)"
+        light:"rgba(225,255,255,0.2)",
+        brown:'rgba(217, 200, 165,0.25)',
+        maroon:'rgba(152, 88, 62,0.2)',
+        orange:'rgba(255, 75, 31,0.2)',
+        ui:'rgba(126, 95, 247,0.25)'
       }
     },
   },

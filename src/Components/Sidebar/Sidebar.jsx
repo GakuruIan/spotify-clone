@@ -14,7 +14,9 @@ import { IoSettingsOutline } from "react-icons/io5";
 
 const Sidebar = () => {
   return (
-    <div className='absolute left-[-400px] md:left-0 md:relative  min-h-screen bg-dark-100 w-56'>
+      <div className='absolute left-[-400px] md:left-0 md:relative  h-screen bg-dark-100 w-56'>
+        <div className="fixed w-56">
+
         <div className="px-2">
             <header className="my-2 py-2">
                 <h6 className="text-xl text-center">Groove Party</h6>
@@ -50,6 +52,7 @@ const Sidebar = () => {
                 </div>
             </div>
         </div>
+    </div>
     </div>
   )
 }
