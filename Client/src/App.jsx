@@ -3,6 +3,7 @@ import Content from "./Components/Content/Content";
 import Landing from "./Pages/Landing/Landing";
 import Main from "./Pages/Main/Main";
 import SpotifyUI from "./Pages/SpotifyUI/SpotifyUI";
+import { MenuProvider } from "./Context";
 
 
 function App() {
@@ -30,7 +31,9 @@ function App() {
 
   return (
     <>
-     <RouterProvider router={router} />
+      <MenuProvider>
+        <RouterProvider router={router} />
+      </MenuProvider>
     </>
   )
 }

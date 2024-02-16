@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 
 import pic from '../../assets/one.png'
 
@@ -12,26 +12,28 @@ import { PiFoldersLight } from "react-icons/pi";
 import { IoIosLogOut } from "react-icons/io";
 import { CiMenuFries } from "react-icons/ci"
 
+// Context
+import { MenuContext } from '../../Context';
 const Topbar = () => {
     const[isopen,setIsOpen] =  useState(false)
 
-
+    const {toggleMenu} = useContext(MenuContext)
   return (
     <div className='flex-1 w-full'>
         <div className="py-2 px-2 md:px-4 w-full flex items-center justify-between">
             {/* menu */}
-             <span className='hover:cursor-pointer block md:hidden'>
-                <CiMenuFries className='text-xl'/>
+             <span className='group mr-2 hover:cursor-pointer block lg:hidden' onClick={()=>toggleMenu(true)}>
+                <CiMenuFries className='text-xl group-hover:text-spotify-900'/>
              </span>
              {/* search bar */}
-            <form action="" className="flex gap-x-2 bg-light md:w-1/2 pl-2 pr-4 rounded-sm">
+            <form action="" className="flex gap-x-2 bg-light  md:w-1/2 pl-2 pr-4 rounded-sm">
                 <input type="text" className="w-full bg-transparent px-2 py-2 outline-none placeholder:text-gray-400" placeholder='search by song or artist'/>
                 <button className='px-2'><CiSearch/></button>
             </form>
             
             <div className="relative flex gap-x-2 flex-col items-center">
 
-                <button onClick={()=>setIsOpen(!isopen)} id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" className="text-white    font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">
+                <button onClick={()=>setIsOpen(!isopen)} id="dropdownDividerButton" data-dropdown-toggle="dropdownDivider" className="text-white    font-medium rounded-lg text-sm px-2 py-1 md:px-5 md:py-2.5 text-center inline-flex items-center" type="button">
                        <img src={pic} className='object-fit w-7 h-7 rounded-full'/>
                        <svg className="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                           <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>

@@ -1,10 +1,13 @@
 import React,{useRef} from 'react'
 
+import Loading from '../LoadingTemplate/Loading';
+
 import pic from '../../assets/two.png'
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
 
 const Row = ({url,title}) => {
 
@@ -49,9 +52,9 @@ const Row = ({url,title}) => {
 
   return (
     <div className='py-4 px-2 md:px-0'>
-        <h6 className="text-xl mb-4">{title}</h6>
-
-            <div className="md:w-[calc(100vw-200px)]">
+              <Loading/>
+              {/* <h6 className="text-xl mb-4">{title}</h6> */}
+            {/* <div className="md:w-[calc(100vw-200px)]">
                 <Slider ref={SliderRef} {...settings} className=" px-0 ">
                         {
                             slides.map((slide,key)=>{
@@ -66,7 +69,7 @@ const Row = ({url,title}) => {
                         }
                 </Slider>
  
-            </div>
+            </div> */}
           
     </div>
   )

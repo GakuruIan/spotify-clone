@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useContext} from 'react'
 // Component
 import LinkText from '../Link/LinkText';
 
@@ -11,15 +11,26 @@ import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { GoHistory } from "react-icons/go"
 import { AiOutlineShareAlt } from "react-icons/ai";
 import { IoSettingsOutline } from "react-icons/io5";
+import { MdClose } from "react-icons/md";
+
+// context 
+import {MenuContext} from "../../Context"
 
 const Sidebar = () => {
-  return (
-      <div className='absolute left-[-400px] md:left-0 md:relative  h-screen bg-dark-100 w-56'>
-        <div className="fixed w-56">
+  
+ const {isOpen,toggleMenu} = useContext(MenuContext)
 
-        <div className="px-2">
-            <header className="my-2 py-2">
+  return (
+      <div className={`fixed transition-all ease-in-out duration-700 w-full  z-40 lg:left-0 md:relative min-h-screen bg-dark-100 md:w-0 lg:w-56 ${isOpen ? 'left-[0px] ': 'left-[-1000px]'}`}>
+        <div className={`fixed lg:w-56 ${isOpen ? 'md:w-56 bg-dark-100 min-h-screen' : ''}`}>
+
+        <div className="px-2 py-2">
+            <header className=" relative my-2 py-2 flex items-center justify-between">
                 <h6 className="text-xl text-center">Groove Party</h6>
+
+                <span className='group p-1 block lg:hidden hover:cursor-pointer border-2 border-gray-400 rounded-full hover:border-spotify-900' onClick={()=>toggleMenu(false)}>
+                    <MdClose className='group-hover:text-spotify-900'/>
+                </span>
             </header>
 
             <div className="pl-2 mb-4">
