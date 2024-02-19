@@ -22,7 +22,7 @@ function App() {
           element:<Content/>
         },
         {
-          path:'/main/ui',
+          path:'/main/music',
           element:<SpotifyUI/>
         }
       ]

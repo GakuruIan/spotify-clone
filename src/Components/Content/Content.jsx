@@ -1,9 +1,16 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
+
+// component
 import Releases from '../Releases/Releases'
 import Row from '../Row/Row'
 import Topbar from '../TopBar/Topbar'
+import Category from '../Category/Category'
+import FeaturedPlayList from '../FeaturePlaylist/FeaturePlaylist'
+import Albums from '../Albums/Albums'
+
 
 const Content = () => {
+ 
   return (
     <div className='relative w-full'
     style={{
@@ -12,9 +19,10 @@ const Content = () => {
       >
         <Topbar/>
         <Releases/>
-        <Row title="Top artist"/>
-        <Row title="Top Album"/>
-        <Row title="Genre"/>
+        <Row/> 
+        <Category  /> 
+        <FeaturedPlayList/>
+        <Albums/>
     </div>
   )
 }
