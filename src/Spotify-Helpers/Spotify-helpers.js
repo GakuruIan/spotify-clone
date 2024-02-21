@@ -1,3 +1,5 @@
+import axios from "axios"
+
 export const scopes = [
     'user-read-email',
     'user-read-private',
@@ -19,3 +21,36 @@ export const getToken=()=>{
     },{})
 }
 
+export const getRefreshToken =(token)=>{
+   const url = "https://accounts.spotify.com/api/token"
+
+   const data = new URLSearchParams({
+    grant_type:'refresh_token',
+    refresh_token: token,
+    client_id:import.meta.env.VITE_CLIENT_ID
+   })
+
+   
+   axios.post(url,data,{
+    headers:{
+        'Authorization':Buffer.from(`${import.meta.env.VITE_CLIENT_ID}:${import.meta.env.VITE_CLIENT_SECRET}`).toString('base64'),
+        'Content-Type': 'application/x-www-form-urlencoded'}
+   })
+   .then((response)=>{
+      console.log(response.data)
+   })
+   .catch(err=>{
+      console.log(err)
+   })
+}
+
+
+export const colors = [
+    'rgba(225,255,255,0.2)',
+    'rgba(217, 200, 165,0.25)',
+    'rgba(152, 88, 62,0.2)',
+    'rgba(239, 239, 238,0.25)',
+    'rgba(181, 155, 137,0.2)',
+    'rgba(180, 137, 110,0.25)',
+    'rgba(229, 172, 73,0.2)'
+    ]

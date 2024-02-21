@@ -4,25 +4,30 @@ import Landing from "./Pages/Landing/Landing";
 import Main from "./Pages/Main/Main";
 import SpotifyUI from "./Pages/SpotifyUI/SpotifyUI";
 import { MenuProvider } from "./Context";
+import Artist from "./Pages/Artist/Artist";
 
 
 function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/login",
       element: <Landing/>,
     },
     {
-      path:'/main',
+      path:'/',
       element:<Main/>,
       children:[
         {
-          path:"/main",
+          path:"/",
           element:<Content/>
         },
         {
-          path:'/main/music',
+           path:"/artist/:id",
+           element:<Artist/>
+        },
+        {
+          path:'/music',
           element:<SpotifyUI/>
         }
       ]

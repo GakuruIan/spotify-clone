@@ -31,7 +31,7 @@ const Landing = () => {
      setImage(images[num])
 
      if(User.currentuser){
-      window.location.href = "/main"
+      window.location.href = "/"
      }
 
      else{
@@ -44,9 +44,10 @@ const Landing = () => {
 
           SpotifyApi.getMe()
           .then(user=>{
+            console.log(user)
              const {country,display_name,email,id,images} = user 
              dispatch(login({country,display_name,email,id,images,token:_token.access_token}))
-             window.location.href = "/main"
+             window.location.href = "/"
           })
           .catch(err=>{
             console.log(err)
@@ -70,7 +71,7 @@ const Landing = () => {
           <p className="text-base md:text-xl text-center mb-4"> Unveiling Today's Chart-Topping Beats!</p>
          
           <a 
-             href={`https://accounts.spotify.com/authorize?&client_id=${import.meta.env.VITE_CLIENT_ID}&response_type=token&scope=${scopes}&redirect_uri=http://localhost:5173/&show_dialog=true`}
+             href={`https://accounts.spotify.com/authorize?&client_id=${import.meta.env.VITE_CLIENT_ID}&response_type=token&scope=${scopes}&redirect_uri=http://localhost:5173/login&show_dialog=true`}
              className="px-4 py-2 text-base text-center border border-spotify-900 w-full  hover:bg-spotify-900">
              Login
           </a>

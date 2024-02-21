@@ -17,20 +17,13 @@ import { RxTrackPrevious } from "react-icons/rx"
 import { RxPlay } from "react-icons/rx"
 import { IoMdMore } from "react-icons/io"
 
+// colors
+import { colors } from '../../Spotify-Helpers/Spotify-helpers'
+
 const SpotifyUI = () => {
     const [color,setColor] = useState("")
     const list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
-    const colors = [
-    'rgba(225,255,255,0.2)',
-    'rgba(217, 200, 165,0.25)',
-    'rgba(152, 88, 62,0.2)',
-     'rgba(239, 239, 238,0.25)',
-     'rgba(181, 155, 137,0.2)',
-    'rgba(180, 137, 110,0.25)',
-    'rgba(229, 172, 73,0.2)'
-    ]
-    
 
     useEffect(()=>{
        let colorIndex =  Math.floor((Math.random()*colors.length))
@@ -44,7 +37,7 @@ const SpotifyUI = () => {
             background:`linear-gradient(to bottom, ${color} , #222222 45%)`
         }}   
         >
-
+           
         <div className="h-[35vh] md:h-[45vh] relative flex md:items-center">
             <div className="px-2 md:mx-4 flex items-center gap-x-4 w-full">
                 <img src={pic} alt="" className='h-44 md:h-60 w-36 md:w-44 object-cover rounded-sm'/>

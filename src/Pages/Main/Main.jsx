@@ -9,7 +9,7 @@ const Main = () => {
 
    useEffect(()=>{
       if(!user.currentuser){
-        window.location.href = '/'
+        window.location.href = '/login'
       }
    },[user.currentuser])
  
