@@ -5,6 +5,8 @@ import Main from "./Pages/Main/Main";
 import SpotifyUI from "./Pages/SpotifyUI/SpotifyUI";
 import { MenuProvider } from "./Context";
 import Artist from "./Pages/Artist/Artist";
+import Categories from "./Pages/Categories/Categories";
+import CategoryPage from "./Pages/Category/CategoryPage";
 
 
 function App() {
@@ -25,6 +27,14 @@ function App() {
         {
            path:"/artist/:id",
            element:<Artist/>
+        },
+        {
+          path:'/categories',
+          element:<Categories/>
+        },
+        {
+          path:'/category/:id',
+          element:<CategoryPage/>
         },
         {
           path:'/music',

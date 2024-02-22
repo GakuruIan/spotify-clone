@@ -24,9 +24,12 @@ const Artist = () => {
    const SpotifyWeb = new SpotifyWebApi()
    const [artist,setArtist] = useState({})
    const [tracks,setTracks]= useState([])
+   const [albums,setAlbums] = useState([])
+   const [relatedArtists,setRelatedArtists] = useState([])
    const [color,setColor] = useState("")
 
    const artistId = useParams().id;
+
 
    useEffect(()=>{
     let colorIndex =  Math.floor((Math.random()*colors.length))
@@ -36,12 +39,29 @@ const Artist = () => {
       SpotifyWeb.getArtist(artistId)
       .then((response)=>{
         setArtist(response)
+
+        // artist top tracks
         SpotifyWeb.getArtistTopTracks(artistId,'KE').then((response)=>{
-          setTracks(response.tracks)
-            console.log(response)
+            setTracks(response.tracks)
         }).catch((err)=>{
           console.log(err)
         })
+
+        // artists album
+        SpotifyWeb.getArtistAlbums(artistId,{limit:5,offset:1}).then((response)=>{
+          setAlbums(response.items)
+
+        }).catch(err=>{
+          console.log(err)
+        })
+
+        // related artist
+        SpotifyWeb.getArtistRelatedArtists(artistId,{limit:5}).
+        then((response)=>{
+          setRelatedArtists(response.artists.slice(0,5))
+        })
+        .catch(err=>console.log(err))
+
       })
       .catch((err)=>{
         console.log(err)
@@ -166,6 +186,49 @@ const Artist = () => {
        </div>
           {/* songs table */}
            </div>
+
+           {/* top tracks */}
+
+           {/* artist album */}
+            <div className="px-4 mt-4 py-4">
+               <h6 className="text-2xl mb-2">Artist's Album</h6>
+
+               <div className="grid grid-cols-2 gap-y-2 md:gap-y-0 md:grid-cols-5 gap-x-2">
+                  {
+                      albums.map((album)=>{
+                        return  <div key={album.id} className="rounded-lg group bg-dark-800  px-2 py-3 transition duration-300 ease-in hover:bg-dark-950 hover:cursor-pointer">
+                              <div className="flex items-center justify-center mb-2">
+                                <img src={album.images[0].url} alt="" className='h-40 w-full object-fit rounded-md'/>
+                              </div>
+                              <p className="text-base text-center mb-1">{album.name}</p>
+                              <p className='text-sm text-gray-300 text-center'>{album?.artists[0].name}</p>
+                        </div>
+                      })
+                    }
+               </div>
+            </div>
+            {/* artist album */}
+
+
+            {/* related artists */}
+            <div className="px-4 mt-4 py-4">
+              <h6 className="text-2xl mb-2">Related Artists</h6>
+
+                <div className="grid grid-cols-2 gap-y-2 md:gap-y-0 md:grid-cols-5 gap-x-2">
+                  {
+                      relatedArtists.map((relatedArtist)=>{
+                        return  <div key={relatedArtist.id} className="rounded-lg group bg-dark-800  px-2 py-3 transition duration-300 ease-in hover:bg-dark-950 hover:cursor-pointer">
+                              <div className="flex items-center justify-center mb-2">
+                                <img src={relatedArtist.images[0].url} alt="" className='h-40 w-40 object-fit rounded-full'/>
+                            </div>
+                            <p className="text-base text-center mb-1 group-hover:underline group-hover:cursor-pointer">{relatedArtist.name}</p>
+                            <p className='text-sm text-gray-300 text-center capitalize'>{relatedArtist?.type}</p>
+                      </div>
+                    })
+                  }
+              </div>
+            {/* related artists */}
+            </div>
         </div>
       }
        

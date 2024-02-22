@@ -22,7 +22,6 @@ const Albums = () => {
     })
     .then((response)=>{
        setAlbums(response.items)
-       console.log(response.items)
        setLoading(false)
     })
     .catch((err)=>{

@@ -7,7 +7,8 @@ import SpotifyWebApi from 'spotify-web-api-js'
 // redux
 import { useSelector } from 'react-redux'
 
-import { BaseUrl } from '../../Axios/axios'
+// react router
+import { Link } from 'react-router-dom'
 
 
 const Category = () => {
@@ -53,7 +54,7 @@ const Category = () => {
                    
                    <div className="w-full flex items-center justify-between pr-2">
                      <h6 className="text-xl mb-4">My Category</h6> 
-                     <a href='' className="underline hover:text-gray-400 text-sm mr-2 my-3 rounded-sm ">More</a>
+                     <Link to={"/categories"} className="underline hover:text-gray-400 text-sm mr-2 my-3 rounded-sm ">More</Link>
                    </div>
                    
                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
