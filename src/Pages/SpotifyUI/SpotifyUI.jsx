@@ -11,39 +11,54 @@ import { IoHeartSharp } from "react-icons/io5"
 
 import { IoIosRemoveCircleOutline } from "react-icons/io"
 import { CiTimer } from "react-icons/ci"
-import { CiSpeaker } from "react-icons/ci"
-import { RxTrackNext } from "react-icons/rx"
-import { RxTrackPrevious } from "react-icons/rx"
-import { RxPlay } from "react-icons/rx"
-import { IoMdMore } from "react-icons/io"
 
 // colors
 import { colors } from '../../Spotify-Helpers/Spotify-helpers'
 
-const SpotifyUI = () => {
+const SpotifyUI = ({data}) => {
     const [color,setColor] = useState("")
+
+    const [lists,setLists] = useState([])
     const list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
+    console.log(data)
+   
 
     useEffect(()=>{
        let colorIndex =  Math.floor((Math.random()*colors.length))
        setColor(colors[colorIndex])
+     
     },[])
 
+    function getMinutes(durationInMilliseconds) {
+      const totalSeconds = durationInMilliseconds / 1000;
+      const minutes = Math.floor(totalSeconds / 60);
+      return minutes
+    }
+
+    const getSeconds = (durationInMilliseconds) =>{
+      const totalSeconds = durationInMilliseconds / 1000;
+      let seconds = Math.floor(totalSeconds % 60);
+      if(seconds< 10){
+        seconds = "0" +seconds
+      }
+
+      return seconds
+    }
 
   return (
-    <div className='h-full w-full relative' 
+    <div className='h-full w-full relative'>
+           
+        <div className="sticky top-0 z-40 h-[35vh] md:h-[45vh] relative flex md:items-center"
           style={{
-            background:`linear-gradient(to bottom, ${color} , #222222 45%)`
+            background:`linear-gradient(to bottom, ${color} , #222222)`
         }}   
         >
-           
-        <div className="h-[35vh] md:h-[45vh] relative flex md:items-center">
             <div className="px-2 md:mx-4 flex items-center gap-x-4 w-full">
-                <img src={pic} alt="" className='h-44 md:h-60 w-36 md:w-44 object-cover rounded-sm'/>
+                <img src={data?.images[0].url} alt="" className='h-44 md:h-60 w-36 md:w-44 object-cover rounded-sm'/>
                 <div className="md:max-w-xl">
-                   <h1 className="text-3xl md:text-8xl">Otile Brown</h1>
-                   <p className="mt-2 text-sm md:text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, tempore ipsum? Quasi cupiditate unde qui quos fugit ab nisi nemo nihil sunt, at, repellendus et asperiores facere ipsa iure ullam!</p>
+                   <h1 className="text-3xl md:text-8xl">{data?.name}</h1>
+                   <p className="mt-2 text-sm md:text-base">{data?.description}</p>
                 </div>
             </div>  
        </div>
@@ -61,13 +76,13 @@ const SpotifyUI = () => {
                               Song 
                           </th>
                           <th scope="col" className="px-6 py-3">
+                             
+                          </th>
+                          <th scope="col" className="px-6 py-3">
                               Artist
                           </th>
                           <th scope="col" className="px-6 py-3">
-                            
-                              <span>
-                                <MdOutlineHeadset className='text-spotify-900 text-[18px]'/>
-                              </span>
+                            Popularity
                           </th>
 
                           <th scope="col" className="px-6 py-3">
@@ -76,36 +91,44 @@ const SpotifyUI = () => {
                               </span>
                           </th>
 
-                          <th scope="col" className="px-6 py-3">
-                            
-                          </th>
                       </tr>
                   </thead>
                   <tbody>
                     {
-                      list.map((item)=>{
-                        return <tr className="hover:cursor-pointer hover:bg-light" key={item}>
+                      data?.tracks?.items.map((item,index)=>{
+                        return <tr className="hover:cursor-pointer hover:bg-light" key={item.track.id}>
                               <td className="px-6 py-4">
-                                  {item}
+                                  {index}
                               </td>
-                              <th scope="row" className="flex items-center gap-x-4 px-6 py-4 font-medium whitespace-nowrap text-white">
-                                  Song name 
-                                  <span>
-                                < IoHeartOutline className='text-[20px] text-spotify-900'/>
+                              <td scope="row" className=" px-6 py-4 font-medium whitespace-nowrap text-white">
+                                  {item?.track.name}   
+                              </td>
+                              <td>
+                                    <span>
+                                       < IoHeartOutline className='text-[20px] text-spotify-900'/>
                                   </span>
-                              </th>
-                              <td className="px-6 py-4">
-                                  Artist name
                               </td>
-                              <td className="px-6 py-4">
-                                  12,000
+                              <td className="px-6 py-4 ">
+                                <div className="flex items-center flex-wrap gap-x-1">
+                                  {
+                                    item.track.artists.map((artist)=>{
+                                      return <span className='text-base' key={artist.id}>{artist.name} </span>
+                                    })
+                                  }
+                                </div>
+                                
                               </td>
-                              <td className="px-6 py-4">
-                                  3:45
+                              <td className="px-6 py-4 text-center">
+                                 {item.track.popularity}
                               </td>
-                              <td className="px-6 py-4">
+                              <td className="px-6 py-4 w-24">
+                                  {
+                                    `${getMinutes(item.track.duration_ms)} : ${getSeconds(item.track.duration_ms)}`
+                                  }
+                              </td>
+                              {/* <td className="px-6 py-4">
                                 <IoIosRemoveCircleOutline className='text-[20px] text-red-500'/>
-                              </td>
+                              </td> */}
                           </tr>
                       })
                     }
@@ -118,38 +141,7 @@ const SpotifyUI = () => {
        </div>
           {/* songs table */}
 
-            {/* Player */}
-          <div className="fixed bottom-0  w-screen bg-dark-100 py-2 px-2 h-16 shadow-lg md:mx-4"
-              style={{
-                background:`linear-gradient(to left, ${color} , #222222 65%)`
-            }}  
-            >
-              <div className="px-2 md:px-0 grid grid-cols-3 md:grid-cols-6 gap-2 place-items-center">
-
-                <div className="md:col-span-1 w-full">
-                    <h6 className="text-base">song name</h6>
-                    <p className="text-sm text-gray-400">artist</p>
-                </div>
-
-                {/* player icons */}
-                <div className="md:col-span-2 w-full">
-                     <div className="">
-                        <div className="flex items-center justify-between">
-                              <RxTrackPrevious className='text-xl hover:cursor-pointer hover:text-spotify-900'/>
-                              <RxPlay className='text-xl hover:cursor-pointer hover:text-spotify-900'/>
-                              <RxTrackNext className='text-xl hover:cursor-pointer hover:text-spotify-900'/>
-                        </div>
-                     </div>
-                </div>
-
-                <div className="md:col-span-1 justify-self-end ">
-                  <div className="flex items-center gap-x-2">
-                    <CiSpeaker className='text-xl text-spotify-900'/>
-                    <IoMdMore className='text-xl'/>
-                  </div>
-                </div>
-              </div>
-            </div>
+           
     </div>
   )
 }

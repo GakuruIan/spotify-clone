@@ -7,6 +7,7 @@ import { MenuProvider } from "./Context";
 import Artist from "./Pages/Artist/Artist";
 import Categories from "./Pages/Categories/Categories";
 import CategoryPage from "./Pages/Category/CategoryPage";
+import Playlist from "./Pages/Playlist/Playlist";
 
 
 function App() {
@@ -35,6 +36,10 @@ function App() {
         {
           path:'/category/:id',
           element:<CategoryPage/>
+        },
+        {
+          path:'/playlist/:id',
+          element:<Playlist/>
         },
         {
           path:'/music',

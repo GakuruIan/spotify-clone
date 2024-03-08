@@ -1,6 +1,9 @@
 import React,{useEffect} from 'react'
 import { Outlet } from 'react-router-dom'
+// components
 import Sidebar from '../../Components/Sidebar/Sidebar'
+import Topbar from '../../Components/Topbar/Topbar'
+import Player from '../../Components/Player/Player'
 
 import {useSelector} from 'react-redux'
 
@@ -19,7 +22,9 @@ const Main = () => {
           <Sidebar/>
 
           <div className="flex-1 w-full relative">
-            <Outlet/>
+            <Topbar/>
+             <Outlet/>
+            <Player/>
           </div>
           
        </div>

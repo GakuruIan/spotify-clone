@@ -17,7 +17,6 @@ const Content = () => {
       background:`linear-gradient(to bottom left, rgba(255,255,255,0.1) , #222222 25%)`
   }} 
       >
-        <Topbar/>
         <Releases/>
         <Row/> 
         <Category  /> 

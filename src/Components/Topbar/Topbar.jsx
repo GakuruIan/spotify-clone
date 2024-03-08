@@ -42,7 +42,7 @@ const Topbar = () => {
     }
 
   return (
-    <div className='flex-1 w-full'>
+    <div className='sticky top-0 z-50 flex-1 w-full'>
         <div className="py-2 px-2 md:px-4 w-full flex items-center justify-between">
             {/* menu */}
              <span className='group mr-2 hover:cursor-pointer block lg:hidden' onClick={()=>toggleMenu(true)}>
