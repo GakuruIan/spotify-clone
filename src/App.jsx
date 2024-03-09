@@ -8,6 +8,9 @@ import Artist from "./Pages/Artist/Artist";
 import Categories from "./Pages/Categories/Categories";
 import CategoryPage from "./Pages/Category/CategoryPage";
 import Playlist from "./Pages/Playlist/Playlist";
+import Search from "./Pages/Search/Search";
+import Userplaylist from "./Pages/User/UserPlaylist/Userplaylist";
+import Tracks from "./Components/Tracks/Tracks";
 
 
 function App() {
@@ -44,6 +47,18 @@ function App() {
         {
           path:'/music',
           element:<SpotifyUI/>
+        },
+        {
+          path:'/search',
+          element:<Search/>
+        },
+        {
+          path:'/me/playlist',
+          element:<Userplaylist/>
+        },
+        {
+          path:'/playlist/:id/tracks',
+          element:<Tracks/>
         }
       ]
     }

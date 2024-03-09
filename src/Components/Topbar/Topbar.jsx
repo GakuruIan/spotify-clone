@@ -21,11 +21,14 @@ import {persistor} from '../../Redux/Store'
 import { logout } from '../../Redux/UserReducer';
 import { useDispatch ,useSelector} from 'react-redux';
 
+import { useSearchParams } from 'react-router-dom';
 
 const Topbar = () => {
     const[isopen,setIsOpen] =  useState(false)
     const[currentUser,setCurrentUser] = useState({})
+    const [search,setSearch] = useState("")
 
+    
     const dispatch = useDispatch()
     const user = useSelector((state)=>state.user)
     
@@ -40,18 +43,28 @@ const Topbar = () => {
       dispatch(logout())
       persistor.purge()
     }
-
+    
+    const handleSubmit = (e)=>{
+        e.preventDefault()
+        console.log(search)
+    }
   return (
-    <div className='sticky top-0 z-50 flex-1 w-full'>
-        <div className="py-2 px-2 md:px-4 w-full flex items-center justify-between">
+
+    
+    <div className='sticky top-0 z-30 flex-1 w-full '
+    style={{
+          background:`linear-gradient(to left, #292929 , #222222 65%)`
+      }} 
+    >
+        <div className="py-2 px-2  md:px-4 w-full flex items-center justify-between">
             {/* menu */}
              <span className='group mr-2 hover:cursor-pointer block lg:hidden' onClick={()=>toggleMenu(true)}>
                 <CiMenuFries className='text-xl group-hover:text-spotify-900'/>
              </span>
              {/* search bar */}
-            <form action="" className="flex gap-x-2 bg-light  md:w-1/2 pl-2 pr-4 rounded-sm">
-                <input type="text" className="w-full bg-transparent px-2 py-2 outline-none placeholder:text-gray-400" placeholder='search by song or artist'/>
-                <button className='px-2'><CiSearch/></button>
+            <form action="" onSubmit={handleSubmit} method='GET' className="flex gap-x-2 bg-light  md:w-1/2 pl-2 pr-4 rounded-sm">
+                <input type="text" onChange={(e) => setSearch(e.target.value)} name='query' className="w-full bg-transparent px-2 py-2 outline-none placeholder:text-gray-400" placeholder='search by song or artist'/>
+                <button type='submit' className='px-2'><CiSearch/></button>
             </form>
             
             <div className="relative flex gap-x-2 flex-col items-center">
@@ -74,7 +87,7 @@ const Topbar = () => {
                         </svg>
                 </button>
 
-                <div id="dropdownDivider" className={`absolute shadow-lg z-10 bg-dark-400 top-14 right-0 divide-y divide-gray-100 rounded-lg  w-44 divide-gray-600 transition duration-75 ${isopen ? 'block' :'hidden'}`}>
+                <div id="dropdownDivider" className={`absolute shadow-lg z-50 bg-dark-400 top-14 right-0 divide-y divide-gray-100 rounded-lg  w-44 divide-gray-600 transition duration-75 ${isopen ? 'block' :'hidden'}`}>
                     <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDividerButton">
                         <li>
                             <LinkText Icon={CiUser} text={`Profile (${currentUser?.display_name})`} spacing_sm/>
