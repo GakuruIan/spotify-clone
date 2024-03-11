@@ -35,11 +35,11 @@ const Tracks = () => {
 
             SpotifyWeb.getPlaylist(id).then((data)=>{ 
                 setPlaylist(data)
-                console.log(data)
+               
                 SpotifyWeb.getPlaylistTracks(id,{limit:20})
                 .then((tracks)=>{
                     setTracks(tracks)
-                    console.log(tracks.items)
+                   
                 })
                 .catch((err)=>{
                     console.log(err)
@@ -56,7 +56,17 @@ const Tracks = () => {
              window.removeEventListener('resize', handleResize);
            };
         }
-    },[])
+    },[tracks])
+
+    const handlePlay=()=>{
+      SpotifyWeb.play()
+      .then((res)=>{
+        console.log(res)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    }
 
     const getMinutes = (durationInMilliseconds) =>{
         const totalSeconds = durationInMilliseconds / 1000;
@@ -97,7 +107,7 @@ const Tracks = () => {
                     ( <div className="mt-2 px-2 md:mx-4 pb-16">
                     {
                          tracks.items?.map((item,index)=>{
-                          return   <div className="flex items-center gap-x-3 mb-2 hover:bg-light hover:cursor-pointer py-2 px-1" key={item.id}>
+                          return   <div onClick={()=>handlePlay()} className="flex items-center gap-x-3 mb-2 hover:bg-light hover:cursor-pointer py-2 px-1" key={item.id}>
                           <span>
                                 {index +1}
                           </span>

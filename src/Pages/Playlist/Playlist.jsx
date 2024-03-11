@@ -15,7 +15,7 @@ const Playlist = () => {
     const SpotifyWeb = new SpotifyWebApi()
     const {id} = useParams()
     const user = useSelector(state=>state.user.currentuser) 
-   
+    
     useEffect(()=>{
       setLoading(true)
     if(user){
@@ -32,7 +32,7 @@ const Playlist = () => {
    
     }
     
-    },[])
+    },[id])
 
   return (
     <div>

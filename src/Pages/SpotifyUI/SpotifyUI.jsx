@@ -12,21 +12,45 @@ import { colors } from '../../Spotify-Helpers/Spotify-helpers'
 
 import Spinner from '../../Components/LoadingTemplate/Spinner'
 
+import { Link } from 'react-router-dom';
+
+import SpotifyWebApi from 'spotify-web-api-js';
+import { useSelector } from 'react-redux';
+
+
 const SpotifyUI = ({data,loading}) => {
     const [color,setColor] = useState("")
     const [isMobile,setIsMobile] = useState(false)
 
-    console.log(data)
+    const SpotifyWeb = new SpotifyWebApi()
 
     const handleResize = ()=>{
       setIsMobile(window.innerWidth < 768)
     }
-   
+
+    const user = useSelector(state=>state.user.current)
+    
+    const handlePlay=()=>{
+
+      if(user){
+        SpotifyWeb.setAccessToken(user.token)
+      }
+
+      SpotifyWeb.play()
+      .then((res)=>{
+        console.log(res)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+    }
 
     useEffect(()=>{
        let colorIndex =  Math.floor((Math.random()*colors.length))
        setColor(colors[colorIndex])
 
+       
+           
        window.addEventListener('resize', handleResize);
 
        handleResize()
@@ -53,6 +77,16 @@ const SpotifyUI = ({data,loading}) => {
       return seconds
     }
 
+    const Trimmer=(inputStr) => {
+      const word = 'Cover'
+      var index = inputStr.indexOf(word);
+      if (index !== -1) {
+          return inputStr.slice(0, index + word.length);
+      } else {
+          return inputStr;
+      }
+  }
+
   return (
     <>
        {
@@ -65,14 +99,14 @@ const SpotifyUI = ({data,loading}) => {
                   backgroundImage:`linear-gradient(to bottom, ${color} , #222222)`
               }}   
               >
-                  <div className="px-2 md:mx-4 flex items-center gap-x-4 w-full">
+                  <div className="px-2 md:mx-4 flex items-center gap-x-4 md:gap-x-4 w-full">
                       {
                         data?.images &&  <img src={data?.images[0].url} alt="" className='h-44 md:h-60 w-36 md:w-44 object-cover rounded-sm'/>
                       }
                       
-                      <div className="md:max-w-xl">
+                      <div className=" md:max-w-xl text-wrap">
                         <h1 className="text-3xl md:text-8xl">{data?.name}</h1>
-                        <p className="mt-2 text-sm md:text-base">{data?.description}</p>
+                        <p className="text-wrap   mt-2 text-sm md:text-base">{data?.description && Trimmer(data?.description)}</p>
                       </div>
                   </div>  
             </div>
@@ -84,7 +118,7 @@ const SpotifyUI = ({data,loading}) => {
                 <div className="mt-2 px-2 md:mx-4">
                   {
                        data?.tracks?.items.map((item)=>{
-                        return   <div className="flex items-center gap-x-3 mb-2 hover:bg-light hover:cursor-pointer py-2 px-1" key={item.id}>
+                        return   <div className="flex items-center gap-x-3 mb-2 hover:bg-light hover:cursor-pointer py-2 px-1" key={item.track.id}>
                         <span>
                           < CiPlay1 className='text-[20px] text-spotify-900'/>
                         </span>
@@ -95,7 +129,7 @@ const SpotifyUI = ({data,loading}) => {
                           <div className="flex items-center flex-wrap gap-x-1">
                             {
                                item.track.artists.map((artist)=>{
-                                return <p className='text-sm text-[rgba(255,255,255,0.4)]' key={artist.id}>{artist.name} </p>
+                                return <p  className='text-sm text-[rgba(255,255,255,0.4)]' key={artist.id}>{artist.name} </p>
                               })
                             }
                           </div>
@@ -145,7 +179,7 @@ const SpotifyUI = ({data,loading}) => {
                             <tbody>
                               {
                                 data?.tracks?.items.map((item,index)=>{
-                                  return <tr className="hover:cursor-pointer hover:bg-light" key={item.track.id}>
+                                  return <tr onClick={()=>handlePlay()} className="hover:cursor-pointer hover:bg-light" key={item.track.id}>
                                         <td className="px-6 py-4">
                                             {index + 1}
                                         </td>

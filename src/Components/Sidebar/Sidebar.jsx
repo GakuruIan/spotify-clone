@@ -84,7 +84,7 @@ const Sidebar = () => {
                     {
                         playlist.length > 0 ? (
                             playlist.map((item)=>{
-                             return <LinkText link={`playlist/${item.id}`} key={item.id} text={item.name}/>
+                             return <LinkText link={`/playlist/${item.id}`} key={item.id} text={item.name}/>
                             })
                          ):
                          (
