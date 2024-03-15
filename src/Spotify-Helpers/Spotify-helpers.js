@@ -1,4 +1,9 @@
 import axios from "axios"
+import SpotifyWebApi from "spotify-web-api-js"
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+export const SpotifyWeb = new SpotifyWebApi()
 
 export const scopes = [
     'user-read-email',
@@ -9,7 +14,8 @@ export const scopes = [
     'user-modify-playback-state',
     'user-top-read',
     'user-follow-read',
-    'user-library-read'
+    'user-library-read',
+    'user-follow-modify'
 ].join("%20")
 
 export const getToken=()=>{
@@ -54,3 +60,33 @@ export const colors = [
     'rgba(180, 137, 110,0.25)',
     'rgba(229, 172, 73,0.2)'
     ]
+
+export const getMinutes = (durationInMilliseconds) =>{
+    const totalSeconds = durationInMilliseconds / 1000;
+    const minutes = Math.floor(totalSeconds / 60);
+    return minutes
+  }
+
+export const getSeconds = (durationInMilliseconds) =>{
+    const totalSeconds = durationInMilliseconds / 1000;
+    let seconds = Math.floor(totalSeconds % 60);
+    if(seconds< 10){
+        seconds = "0" +seconds
+    }
+
+    return seconds
+}
+
+
+export const handlePlay=(token)=>{
+    SpotifyWeb.setAccessToken(token)
+
+    SpotifyWeb.play().then((res)=>{
+      console.log(res)
+    })
+    .catch((err)=>{
+        if(err.status === 403){
+            toast.error("Premium account required",{theme: "colored",})
+           }
+    })
+}

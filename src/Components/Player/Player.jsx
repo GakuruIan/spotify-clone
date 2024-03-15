@@ -43,13 +43,16 @@ const Player = () => {
               <div className="px-2 md:px-0 grid grid-cols-3 md:grid-cols-6 gap-2 place-items-center">
 
                 <div className="md:col-span-1 w-full">
-                    <h6 className="text-base">{playing.item?.name}</h6>
+                    <h6 className="text-base">{playing.item?.name ? playing.item?.name : "Song name"}</h6>
 
                     <div className="flex items-center gap-x-2">
                       {
+                        playing.item?.artists.length > 0 ?
                         playing.item?.artists.map((artist)=>{
                             return <p key={artist.id} className="text-sm text-gray-400">{artist.name}</p>
-                        })
+                        }) :
+
+                        <p className="text-sm text-gray-400">artist name</p>
                       } 
                     </div>
                      

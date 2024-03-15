@@ -10,7 +10,9 @@ import CategoryPage from "./Pages/Category/CategoryPage";
 import Playlist from "./Pages/Playlist/Playlist";
 import Search from "./Pages/Search/Search";
 import Userplaylist from "./Pages/User/UserPlaylist/Userplaylist";
-import Tracks from "./Components/Tracks/Tracks";
+import PlaylistTracks from "./Pages/Playlist/PlaylistTracks";
+import Track from "./Pages/Track/Track";
+import Album from "./Pages/Album/Album";
 
 
 function App() {
@@ -27,6 +29,10 @@ function App() {
         {
           path:"/",
           element:<Content/>
+        },
+        {
+          path:"/album/:id",
+          element:<Album/>
         },
         {
            path:"/artist/:id",
@@ -58,7 +64,11 @@ function App() {
         },
         {
           path:'/playlist/:id/tracks',
-          element:<Tracks/>
+          element:<PlaylistTracks/>
+        },
+        {
+          path:'/track/:id',
+          element:<Track/>
         }
       ]
     }
