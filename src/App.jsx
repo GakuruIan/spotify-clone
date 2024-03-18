@@ -13,6 +13,7 @@ import Userplaylist from "./Pages/User/UserPlaylist/Userplaylist";
 import PlaylistTracks from "./Pages/Playlist/PlaylistTracks";
 import Track from "./Pages/Track/Track";
 import Album from "./Pages/Album/Album";
+import NotFound from "./Pages/NotFound/404";
 
 
 function App() {
@@ -71,6 +72,10 @@ function App() {
           element:<Track/>
         }
       ]
+    },
+    {
+      path:"*",
+      element:<NotFound/>
     }
   ]);
 

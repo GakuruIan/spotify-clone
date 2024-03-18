@@ -63,7 +63,7 @@ const Sidebar = () => {
                 <div className="pl-1">
                      <LinkText Icon={CiHome} text="Home"/>
                      <LinkText Icon={IoRocketOutline} text="Explore"/>
-                     <LinkText Icon={CiSearch} text="Search"/>
+                     <LinkText link={'/search'} Icon={CiSearch} text="Search"/>
                      <LinkText Icon={IoSettingsOutline} text="Settings"/>
                 </div>
             </div>

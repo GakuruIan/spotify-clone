@@ -4,6 +4,7 @@ import React,{useState,useEffect} from 'react'
 import { CiTimer } from "react-icons/ci"
 import { IoHeartOutline } from "react-icons/io5"
 import { CiPlay1 } from "react-icons/ci";
+import { MdExplicit } from "react-icons/md"
 
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,8 +34,10 @@ const Tracks = ({tracks}) => {
         };
 
     },[])
-   
-    console.log(tracks.images)
+
+ 
+
+    console.log(tracks)
   return (
     <div>
       {/* toast notification */}
@@ -62,16 +65,13 @@ const Tracks = ({tracks}) => {
                                   <>
                                 
                                      {
-                                      item.track.album?.images  ? 
-                                       <img src={item.track.album?.images[0].url} alt="" srcset="" className='h-8 w-8 object-fit'/> 
-                                          :
-                                       <img src={item?.images[0].url} alt="" />
+                                      item?.images && <img src={item?.images[0].url} alt="" />
                                      }
                                   </>
                                 }
                              </div>
   
-
+                                {/* track.album? */}
                               <div className="">
                                   <h6 className="text-base">{item.name ? item.name : item.track.name}</h6>
 
@@ -120,8 +120,9 @@ const Tracks = ({tracks}) => {
                                     <th scope="col" className="px-6 py-3">
                                         Artist
                                     </th>
+
                                     <th scope="col" className="px-6 py-3">
-                                      Popularity
+                                      Popularity/Explict
                                     </th>
 
                                     <th scope="col" className="px-6 py-3">
@@ -151,7 +152,7 @@ const Tracks = ({tracks}) => {
                                           <div className="flex items-center flex-wrap gap-x-1">
                                             {
                                               
-                                              item.artist ? 
+                                              item.artists ? 
                                                (
                                                   item?.artists.map((artist)=>{
                                                    return <span className='text-base' key={artist.id}>{artist.name} </span>
@@ -168,6 +169,7 @@ const Tracks = ({tracks}) => {
                                           </div>
                                           
                                         </td>
+                                        
                                         <td className="px-6 py-4 text-center">
                                           {item.track?.popularity ? item.track?.popularity : item?.popularity}
                                         </td>
