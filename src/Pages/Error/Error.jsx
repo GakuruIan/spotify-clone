@@ -1,6 +1,7 @@
 import React from 'react'
 
 import pic from '../../assets/error.png'
+
 const Error = ({error,resetErrorBoundary}) => {
 
   console.log(error)

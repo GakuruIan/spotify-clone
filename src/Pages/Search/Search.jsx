@@ -8,7 +8,7 @@ import { CiPlay1 } from "react-icons/ci";
 import { IoHeartOutline } from "react-icons/io5"
 import { CiTimer } from "react-icons/ci"
 
-import Spinner from '../../Components/LoadingTemplate/Spinner';
+import Spinner from '../../Components/LoadingTemplate/Spinner.jsx';
 
 const Search = () => {
   const [search,setSearch] = useState("")

@@ -10,11 +10,10 @@ import { CiPlay1 } from "react-icons/ci";
 // colors
 import { colors } from '../../Spotify-Helpers/Spotify-helpers'
 
-import Spinner from '../../Components/LoadingTemplate/Spinner'
+import Spinner from '../../Components/LoadingTemplate/Spinner.jsx'
 
 import { Link } from 'react-router-dom';
 
-import SpotifyWebApi from 'spotify-web-api-js';
 import { useSelector } from 'react-redux';
 
 // notification
@@ -22,7 +21,7 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { getMinutes,getSeconds,handlePlay } from '../../Spotify-Helpers/Spotify-helpers';
-import Tracks from '../../Components/Tracks/Tracks';
+
 
 const SpotifyUI = ({data,loading}) => {
     const [color,setColor] = useState("")

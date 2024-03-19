@@ -7,7 +7,7 @@ import SpotifyWebApi from 'spotify-web-api-js'
 import { useSelector } from 'react-redux'
 
 // component
-import Loading from '../../Components/LoadingTemplate/Loading'
+import Loading from '../../Components/LoadingTemplate/Loading.jsx'
 
 // react router
 import { Link } from 'react-router-dom'

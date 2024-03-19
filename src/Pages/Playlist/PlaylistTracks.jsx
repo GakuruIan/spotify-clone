@@ -7,8 +7,8 @@ import { SpotifyWeb } from '../../Spotify-Helpers/Spotify-helpers'
 import { useSelector } from 'react-redux'
 
 // component
-import Wrapper from '../../Components/Wrapper/Wrapper'
-import Tracks from '../../Components/Tracks/Tracks'
+import Wrapper from '../../Components/Wrapper/Wrapper.jsx'
+import Tracks from '../../Components/Tracks/Tracks.jsx'
 
 // react router
 import { useParams } from 'react-router-dom'

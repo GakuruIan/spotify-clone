@@ -7,7 +7,7 @@ import SpotifyWebApi from 'spotify-web-api-js'
 
 // redux
 import { useSelector } from 'react-redux'
-import SpotifyUI from '../SpotifyUI/SpotifyUI'
+import SpotifyUI from '../SpotifyUI/SpotifyUI.jsx'
 const Playlist = () => {
     const [data,setData] = useState([])
     const [loading,setLoading] = useState(false)

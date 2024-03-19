@@ -7,10 +7,9 @@ import { Link } from 'react-router-dom'
 import SpotifyWebApi from 'spotify-web-api-js'
 
 // component
-import Spinner from '../../../Components/LoadingTemplate/Spinner'
+import Spinner from '../../../Components/LoadingTemplate/Spinner.jsx'
 
-// assets
-import { colors } from '../../../Spotify-Helpers/Spotify-helpers'
+
 
 const Userplaylist = () => {
     const[ userPlaylist,setUserplaylist] = useState([])

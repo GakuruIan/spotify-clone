@@ -9,7 +9,7 @@ import { colors } from '../../Spotify-Helpers/Spotify-helpers'
 import { useSelector } from 'react-redux'
 
 // components
-import Loading from '../../Components/LoadingTemplate/Loading'
+import Loading from '../../Components/LoadingTemplate/Loading.jsx'
 
 const CategoryPage = () => {
   const [playlists,setPlaylists] = useState([])

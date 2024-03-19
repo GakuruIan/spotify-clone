@@ -1,9 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 
 // component
 import Releases from '../Releases/Releases'
 import Row from '../Row/Row'
-import Topbar from '../TopBar/Topbar'
 import Category from '../Category/Category'
 import FeaturedPlayList from '../FeaturePlaylist/FeaturePlaylist'
 import Albums from '../Albums/Albums'
